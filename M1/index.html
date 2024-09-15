@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Simple To Do List</title>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+  </head>
+  <body>
+
+<style>
+  .example-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+</style>
+
+<ion-menu content-id="main-content">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Menu Content</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">This is the menu content.</ion-content>
+</ion-menu>
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar color="primary" style="padding-top: 20px;">
+      <ion-buttons slot="start">
+        <ion-menu-button color="light"></ion-menu-button>
+      </ion-buttons>
+      <ion-title color="light">Simple To Do List</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <ion-tabs>
+      <ion-tab tab="home">
+        <ion-nav id="home-nav"></ion-nav>
+        <div id="home-page">
+          <ion-content class="ion-padding">
+            <h1>Add an item:</h1>
+            <div style="display: flex;">
+              <ion-input label="New Item!" label-placement="floating" fill="outline" placeholder="Enter text"></ion-input> <ion-button id="open-toast">Save</ion-button>
+              <ion-toast trigger="open-toast" message="Item added successfully!" duration="5000"></ion-toast>
+            </div>
+            <ion-list>
+              <ion-item>
+                <ion-label><ion-checkbox label-placement="end" justify="start" alignment="center">Pickup milk</ion-checkbox></ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label><ion-checkbox label-placement="end" justify="start" alignment="center">Pickup milk</ion-checkbox></ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label><ion-checkbox label-placement="end" justify="start" alignment="center">Pickup milk</ion-checkbox></ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label><ion-checkbox label-placement="end" justify="start" alignment="center">Pickup milk</ion-checkbox></ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label><ion-checkbox label-placement="end" justify="start" alignment="center">Pickup milk</ion-checkbox></ion-label>
+              </ion-item>
+            </ion-list>
+          
+          </ion-content>
+        </div>
+      </ion-tab>
+      <ion-tab tab="lists">
+        <ion-nav id="radio-nav"></ion-nav>
+        <div id="radio-page">
+          <ion-content>
+            <div class="example-content">Lists content</div>
+          </ion-content>
+        </div>
+      </ion-tab>
+      <ion-tab tab="settings">
+        <ion-nav id="library-nav"></ion-nav>
+        <div id="library-page">
+          <ion-content>
+            <div class="example-content">Settings content</div>
+          </ion-content>
+        </div>
+      </ion-tab>
+    
+      <ion-tab-bar slot="bottom" color="primary">
+        <ion-tab-button tab="home">
+          <ion-icon name="home-outline"></ion-icon>
+          Home
+        </ion-tab-button>
+        <ion-tab-button tab="lists">
+          <ion-icon name="list-outline"></ion-icon>
+          Lists
+        </ion-tab-button>
+        <ion-tab-button tab="settings">
+          <ion-icon name="settings-outline"></ion-icon>
+          Settings
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-content>
+</div>
+
+<script>
+  const homeNav = document.querySelector('#home-nav');
+  const homePage = document.querySelector('#home-page');
+  homeNav.root = homePage;
+
+  const radioNav = document.querySelector('#radio-nav');
+  const radioPage = document.querySelector('#radio-page');
+  radioNav.root = radioPage;
+
+  const libraryNav = document.querySelector('#library-nav');
+  const libraryPage = document.querySelector('#library-page');
+  libraryNav.root = libraryPage;
+
+</script>
+
+  </body>
+</html>
