@@ -1,5 +1,5 @@
 // Name of our cache
-const cacheName = 'album-example-v1';
+const cacheName = 'offline-pwa-gallery-v1';
 
 // URLs to cache for offline mode
 const urlsToCache = [
@@ -7,7 +7,10 @@ const urlsToCache = [
   'https://cdn.skypack.dev/@ionic/core@next/css/ionic.bundle.css',
   'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js',
   'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js',
-  'index.html',
+  '/M2/css/styles.css',
+  '../M2/css/styles.css',
+  './M2/css/styles.css',
+  '/index.html',
   '/'
 ];
 
