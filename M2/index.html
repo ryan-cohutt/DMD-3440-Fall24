@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Home | Offline First Demo</title>
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.skypack.dev/@ionic/core@next/css/core.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.skypack.dev/@ionic/core@next/css/ionic.bundle.css" />
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+  <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+  <link rel="stylesheet" href="css/styles.css" />
+  
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register("sw.js");
+    }
+  </script>
+  
+</head>
+
+<body class="home-page">
+
+  <ion-app>
+
+    <div class="ion-page" id="main-content">
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+          <ion-title>Photo Gallery</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+
+        <ion-card class="ion-margin">
+          <img alt="Antelope" src="images/antelope.jpg" />
+          <ion-card-content>
+            Antelope
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card class="ion-margin">
+          <img alt="Bobcat" src="images/bobcat.jpg" />
+          <ion-card-content>
+            Bobcat
+          </ion-card-content>
+
+
+        </ion-card>
+
+        <ion-card class="ion-margin">
+          <img alt="Caracal" src="images/caracal.jpg" />
+          <ion-card-content>
+            Caracal
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card class="ion-margin">
+          <img alt="Caribou" src="images/caribou-bulls.jpg" />
+          <ion-card-content>
+            Caribou Bulls
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card class="ion-margin">
+          <img alt="Caribou" src="images/caribou.jpg" />
+          <ion-card-content>
+            Caribou
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card class="ion-margin">
+          <img alt="Cheetah" src="images/cheetah.jpg" />
+          <ion-card-content>
+            Cheetah
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card class="ion-margin">
+          <img alt="Coyote" src="images/coyote.jpg" />
+          <ion-card-content>
+            Coyote
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card class="ion-margin">
+          <img alt="Ferrets" src="images/ferrets.jpg" />
+          <ion-card-content>
+            Ferrets
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card class="ion-margin">
+          <img alt="Ox" src="images/ox.jpg" />
+          <ion-card-content>
+            Ox
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card class="ion-margin">
+          <img alt="Coyote" src="images/tiger.jpg" />
+          <ion-card-content>
+            Tiger
+          </ion-card-content>
+        </ion-card>
+
+      </ion-content>
+    </div>
+
+  </ion-app>
+</body>
+
+</html>
