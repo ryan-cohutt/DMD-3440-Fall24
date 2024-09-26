@@ -7,10 +7,20 @@ const urlsToCache = [
   'https://cdn.skypack.dev/@ionic/core@next/css/ionic.bundle.css',
   'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js',
   'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js',
-  '/M2/css/styles.css',
-  '../M2/css/styles.css',
-  './M2/css/styles.css',
-  '/index.html',
+  'images/antelope.jpg',
+  'images/bear.jpg',
+  'images/bison.jpg',
+  'images/bobcat.jpg',
+  'images/caracal.jpg',
+  'images/caribou-bulls.jpg',
+  'images/caribou.jpg',
+  'images/cheetah.jpg',
+  'images/coyote.jpg',
+  'images/ferrets.jpg',
+  'images/ox.jpg',
+  'images/tiger.jpg',
+  'css/styles.css',
+  'index.html',   
   '/'
 ];
 
@@ -35,17 +45,3 @@ self.addEventListener('fetch', (event) => {
         })
     );
 });
-
-  // './images/antelope.jpg',
-  // './images/bear.jpg',
-  // './images/bison.jpg',
-  // './images/bobcat.jpg',
-  // './images/caracal.jpg',
-  // './images/caribou-bulls.jpg',
-  // './images/caribou.jpg',
-  // './images/cheetah.jpg',
-  // './images/coyote.jpg',
-  // './images/ferrets.jpg',
-  // './images/ox.jpg',
-  // './images/tiger.jpg',
-  // './css/styles.css',
