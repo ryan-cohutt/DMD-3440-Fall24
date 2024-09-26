@@ -21,7 +21,7 @@ const urlsToCache = [
   'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js',
   // '/style.css',
   'index.html',
-  '/',
+  '/'
 ];
 
 // Cache files on service worker registration
