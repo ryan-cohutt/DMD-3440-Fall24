@@ -19,7 +19,7 @@ const urlsToCache = [
   'https://cdn.skypack.dev/@ionic/core@next/css/ionic.bundle.css',
   'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js',
   'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js',
-  '/style.css',
+  // '/style.css',
   'index.html',
   '/',
 ];
