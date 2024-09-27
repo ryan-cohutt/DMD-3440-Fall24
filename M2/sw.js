@@ -43,4 +43,19 @@ self.addEventListener('fetch', (event) => {
             return cachedResponse || fetch(event.request);
         })
     );
+    let requestUrl = new URL(event.request.url);
+
+    if (requestUrl.pathname === '/') {
+        event.respondWith(
+            caches.match('/index.html').then((response) => {
+                return response || fetch(event.request);
+            })
+        );
+    } else {
+        event.respondWith(
+            caches.match(event.request).then((cachedResponse) => {
+                return cachedResponse || fetch(event.request);
+            })
+        );
+    }
 });
