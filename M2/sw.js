@@ -21,7 +21,6 @@ const urlsToCache = [
   'images/tiger.jpg',
   'css/styles.css',
   'index.html',
-  '/'
 ];
 
 // Cache files on service worker registration
