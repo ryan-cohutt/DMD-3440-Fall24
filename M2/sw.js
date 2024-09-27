@@ -3,10 +3,10 @@ const cacheName = 'offline-pwa-gallery-v1';
 
 // URLs to cache for offline mode
 const urlsToCache = [
-  'https://cdn.skypack.dev/@ionic/core@next/css/core.css',
-  'https://cdn.skypack.dev/@ionic/core@next/css/ionic.bundle.css',
-  'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js',
-  'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js',
+  // 'https://cdn.skypack.dev/@ionic/core@next/css/core.css',
+  // 'https://cdn.skypack.dev/@ionic/core@next/css/ionic.bundle.css',
+  // 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js',
+  // 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js',
   // 'images/antelope.jpg',
   // 'images/bear.jpg',
   // 'images/bison.jpg',
@@ -20,7 +20,7 @@ const urlsToCache = [
   // 'images/ox.jpg',
   // 'images/tiger.jpg',
   // 'css/styles.css',
-  '/index.html',
+  'index.html',
   '/'
 ];
 
