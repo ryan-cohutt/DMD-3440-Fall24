@@ -20,7 +20,7 @@ const urlsToCache = [
   'images/ox.jpg',
   'images/tiger.jpg',
   'css/styles.css',
-  // 'index.html',
+  'index.html',
   // '/'
 ];
 
