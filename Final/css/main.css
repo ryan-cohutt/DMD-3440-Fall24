@@ -1,0 +1,126 @@
+html {
+    padding: 0;
+    margin: 0;
+    background-color: #FFFBF7;
+}
+
+body {
+    padding: 0px 40px;
+    margin: 0;
+    height: 100%;
+}
+
+/* || Typography */
+
+.source-black {
+  font-family: "Source Sans 3", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.inter-thin {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.inter-reg {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.inter-bold {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.inter-italic {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: italic;
+}
+
+
+
+/* || Enter Page */
+
+.enter-page {
+    /* border: red 1px solid; */
+    display: grid;
+    grid-template-rows: 2fr 3fr min-content min-content 0.5fr min-content min-content;
+    img {
+        grid-row: 2;
+        width: 250px;
+        justify-self: end;
+    }
+    h1 {
+        font-size: 3.7em;
+        margin: 0;
+        text-align: center;
+        grid-row: 3;
+        #logo-grow {
+            color: #0F3342;
+            -webkit-text-stroke: #0F3342 2.5px;
+        }
+        #logo-mate {
+            color: #067A53;
+            -webkit-text-stroke: #067A53 2.5px;
+        }
+    }
+    p {
+        font-size: 1.1em;
+        text-align: center;
+        margin: 0;
+        grid-row: 4;
+    }
+    h2 {
+        color: #0F3342;
+        font-size: 2em;
+        margin: 0;
+        margin-bottom: 10px;
+        grid-row: 6;
+    }
+    form {
+        grid-row: 7;
+        #enter-name {
+            box-sizing: border-box;
+            width: 100%;
+            height: 50px;
+            padding: 0px 10px;
+            background-color: white;
+            border: #0F3342 2px solid;
+            border-radius: 10px;
+            color: #0F3342;
+            font-size: 1.1em;
+        }
+        #enter-name:focus {
+            outline: none !important;
+            border: #067A53 2px solid;
+        }
+        #enter-name::placeholder {
+            color: #0F334272;
+        }
+        #name-submit {
+            margin-top: 13px;
+            width: 100%;
+            box-sizing: border-box;
+            height: 50px;
+            background-color: #0F3342;
+            border-radius: 10px;
+            border: none;
+            font-size: 1.2em;
+            color: #FFFBF7;
+            transition: .15s ease all;
+        }
+        #name-submit:active {
+            background-color: #067A53;
+        }
+    }
+}
