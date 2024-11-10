@@ -9,6 +9,8 @@ body {
     padding: 0px 40px;
     margin: 0;
     height: 100%;
+    display: grid;
+    justify-items: center;
 }
 
 /* || Typography */
@@ -50,12 +52,55 @@ body {
 
 
 
+/* || Header */
+
+.header-bar {
+    box-sizing: border-box;
+    opacity: 0;
+    display: none;
+    position: absolute;
+    grid-template-rows: 0;
+    grid-template-columns: 1fr 0.4fr min-content;
+    width: 100%;
+    padding: 0 40px;
+    height: 50px;
+    margin-top: 60px;
+    svg {
+        width: 50px;
+        grid-column: 3;
+        padding-top: 13px;
+        align-self: start;
+        justify-self: end;
+    }
+    h1 {
+        align-self: start;
+        justify-self: start;
+        margin: 0;
+        grid-column: 1;
+        font-size: 2.2em;
+        margin: 0;
+        text-align: center;
+        grid-row: 3;
+        #logo-grow {
+            color: #0F3342;
+            -webkit-text-stroke: #0F3342 1.8px;
+        }
+        #logo-mate {
+            color: #067A53;
+            -webkit-text-stroke: #067A53 1.8px;
+        }
+    }
+}
+
+
+
 /* || Enter Page */
 
 .enter-page {
-    /* border: red 1px solid; */
+    opacity: 1;
     display: grid;
     grid-template-rows: 2fr 3fr min-content min-content 0.5fr min-content min-content;
+    transition: all .1s ease;
     img {
         grid-row: 2;
         width: 250px;
@@ -118,10 +163,76 @@ body {
             border: none;
             font-size: 1.2em;
             color: #FFFBF7;
-            transition: .15s ease all;
+            transition: .1s ease all;
         }
         #name-submit:active {
             background-color: #067A53;
         }
+    }
+}
+
+
+
+/* || Home Page */
+
+.home-page {
+    opacity: 0;
+    display: none;
+    transition: all .1s ease;
+}
+
+
+
+/* || Plants Page */
+
+.plants-page {
+    display: none;
+    opacity: 0;
+    transition: all .1s ease;
+}
+
+
+
+/* || Reminders Page */
+
+.reminders-page {
+    display: none;
+    opacity: 0;
+    transition: all .1s ease;
+}
+
+
+
+/* || Tips Page */
+
+.tips-page {
+    display: none;
+    opacity: 0;
+    transition: all .1s ease;
+}
+
+
+/* || Nav Bar */
+
+.nav-bar {
+    opacity: 0;
+    position: absolute;
+    display: none;
+    bottom: 0;
+    gap: 28px;
+    margin-bottom: 25px;
+    box-sizing: border-box;
+    button {
+        background-color: transparent;
+        border: none;
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        padding: 10px;
+        border-radius: 13px;
+        transition: all .1s ease;
+    }
+    svg {
+        width: 32px;
     }
 }
