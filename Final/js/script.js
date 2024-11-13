@@ -5,22 +5,26 @@ let plantsPage = document.querySelector(".plants-page")
 let remindersPage = document.querySelector(".reminders-page")
 let tipsPage = document.querySelector(".tips-page")
 let navBar = document.querySelector(".nav-bar")
+let navBG = document.querySelector(".nav-bg")
 let headerBar = document.querySelector(".header-bar")
 let homeIcon = document.querySelector("#home-icon")
 let plantsIcon = document.querySelector("#plants-icon")
 let remindersIcon = document.querySelector("#reminders-icon")
 let tipsIcon = document.querySelector("#tips-icon")
+let iconBG = document.querySelector("#icon-bg")
 
 nameForm.addEventListener("submit", function(event){
     event.preventDefault()
     enterPage.style.opacity = "0"
     homePage.style.display = "grid"
     navBar.style.display = "flex"
+    navBG.style.display = "block"
     headerBar.style.display = "grid"
     setTimeout(function(){
         enterPage.display = "none"
         homePage.style.opacity = "1"
         navBar.style.opacity = "1"
+        navBG.style.opacity = "1"
         headerBar.style.opacity = "1"
     }, 250)
 })
@@ -31,9 +35,9 @@ homeIcon.addEventListener("click", function(){
         homePage.style.display = "grid"
         setTimeout(function(){
             homePage.style.opacity = "1"
-            homeIcon.style.backgroundColor = "#067a537d"
+            iconBG.style.marginLeft = "0"
         }, 50)
-    }, 250)
+    }, 125)
 })
 
 plantsIcon.addEventListener("click", function(){
@@ -42,9 +46,9 @@ plantsIcon.addEventListener("click", function(){
         plantsPage.style.display = "grid"
         setTimeout(function(){
             plantsPage.style.opacity = "1"
-            plantsIcon.style.backgroundColor = "#067a537d"
+            iconBG.style.marginLeft = "80px"
         }, 50)
-    }, 250)
+    }, 125)
 })
 
 remindersIcon.addEventListener("click", function(){
@@ -53,9 +57,9 @@ remindersIcon.addEventListener("click", function(){
         remindersPage.style.display = "grid"
         setTimeout(function(){
             remindersPage.style.opacity = "1"
-            remindersIcon.style.backgroundColor = "#067a537d"
+            iconBG.style.marginLeft = "160px"
         }, 50)
-    }, 250)
+    }, 125)
 })
 
 tipsIcon.addEventListener("click", function(){
@@ -64,9 +68,9 @@ tipsIcon.addEventListener("click", function(){
         tipsPage.style.display = "grid"
         setTimeout(function(){
             tipsPage.style.opacity = "1"
-            tipsIcon.style.backgroundColor = "#067a537d"
+            iconBG.style.marginLeft = "240px"
         }, 50)
-    }, 250)
+    }, 125)
 })
 
 function hideAllPages() {
@@ -83,6 +87,6 @@ function hideAllPages() {
         plantsPage.style.display = "none"
         remindersPage.style.display = "none"
         tipsPage.style.display = "none"
-    }, 250)
+    }, 125)
 }
 
