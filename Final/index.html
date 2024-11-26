@@ -74,7 +74,7 @@
           </div>
         </div>
         <div class="new-plant">
-          <button>
+          <button id="add-new-plant1">
             <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
               <line x1="5.5" y1="6.55671e-08" x2="5.5" y2="11" stroke="white" stroke-width="3"/>
               <line x1="11" y1="5.5" y2="5.5" stroke="white" stroke-width="3"/>
@@ -132,13 +132,87 @@
         </div>
     </section>
     <section class="plants-page">
-        <h1>PLANTS</h1>
+      <div class="new-plant">
+        <button id="add-new-plant2">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="5.5" y1="6.55671e-08" x2="5.5" y2="11" stroke="white" stroke-width="3"/>
+            <line x1="11" y1="5.5" y2="5.5" stroke="white" stroke-width="3"/>
+          </svg>
+          <h1 class="source-black">ADD NEW PLANT</h1>
+        </button>
+      </div>
+      <div class="plants-cont">
+        <div class="plant-item">
+          <h1 class="source-black">BARRY</h1>
+          <h2 class="inter-italic">Plant species</h2>
+          <img src="images/Plant1.webp" alt="">
+        </div>
+        <div class="plant-item">
+          <h1 class="source-black">BARRY</h1>
+          <h2 class="inter-italic">Plant species</h2>
+          <img src="images/Plant1.webp" alt="">
+        </div>
+        <div class="plant-item">
+          <h1 class="source-black">BARRY</h1>
+          <h2 class="inter-italic">Plant species</h2>
+          <img src="images/Plant1.webp" alt="">
+        </div>
+        <div class="plant-item">
+          <h1 class="source-black">BARRY</h1>
+          <h2 class="inter-italic">Plant species</h2>
+          <img src="images/Plant1.webp" alt="">
+        </div>
+        <div class="plant-item">
+          <h1 class="source-black">BARRY</h1>
+          <h2 class="inter-italic">Plant species</h2>
+          <img src="images/Plant1.webp" alt="">
+        </div>
+        <div class="plant-item">
+          <h1 class="source-black">BARRY</h1>
+          <h2 class="inter-italic">Plant species</h2>
+          <img src="images/Plant1.webp" alt="">
+        </div>
+        <div class="plant-item">
+          <h1 class="source-black">BARRY</h1>
+          <h2 class="inter-italic">Plant species</h2>
+          <img src="images/Plant1.webp" alt="">
+        </div>
+        <div class="plant-item">
+          <h1 class="source-black">BARRY</h1>
+          <h2 class="inter-italic">Plant species</h2>
+          <img src="images/Plant1.webp" alt="">
+        </div>
+      </div>
     </section>
     <section class="reminders-page">
         <h1>REMINDERS</h1>
     </section>
     <section class="tips-page">
         <h1>TIPS</h1>
+    </section>
+    <section class="add-popup">
+      <div class="popup">
+        <button id="popup-close">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+            <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/>
+          </svg>
+        </button>
+        <form id="plant-form">
+          <input type="file" id="plant-image" accept="image/*" required>
+          <select id="plant-organ">
+              <option value="leaf">Leaf</option>
+              <option value="flower">Flower</option>
+              <option value="fruit">Fruit</option>
+          </select>
+          <button type="submit">Identify</button>
+        </form>
+        <div id="result" class="result" style="display: none;">
+            <h2>Identification Result</h2>
+            <p id="species-name"></p>
+            <p id="confidence-score"></p>
+        </div>
+        <img id="previewImg" src="" alt="" style="max-width: 100%;" />
+      </div>
     </section>
     <footer class="nav-bar">
         <button id="home-icon">
