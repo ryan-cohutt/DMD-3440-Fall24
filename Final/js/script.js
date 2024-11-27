@@ -19,25 +19,6 @@ let closePopup = document.querySelector("#popup-close")
 
 const yourPlants = [];
 
-// let camera = document.querySelector("#camera");
-
-// // Get a reference to the preview image
-// let previewImg = document.querySelector("#previewImg");
-
-// // Listen to camera for a change in selection
-// camera.addEventListener("change", function (event) {
-//   // When file input changes, run this code...
-//   console.log("User changed file input");
-
-//   let photo = camera.files[0];
-
-//   let imgSrc = URL.createObjectURL(photo);
-//   // console.log("Image URL", imgSrc);
-//   previewImg.src = imgSrc;
-
-//   // console.log(previewImg);
-// });
-
 document.getElementById('plant-form').addEventListener('submit', async function (e) {
     e.preventDefault();
 
@@ -45,19 +26,21 @@ document.getElementById('plant-form').addEventListener('submit', async function 
     const organInput = document.getElementById('plant-organ').value;
 
     if (imageInput.files.length === 0) {
-        alert('Please select an image!');
+        alert('Please select at least one image!');
         return;
     }
 
-    const apiKey = '2b10QiE3yzpV9Lc6WnVBqX2Yl'; // Replace with your API key
+    const apiKey = '2b10zXu6SVxjHh1FBPXjbzavge'; // Replace with your API key
     const apiUrl = 'https://my-api.plantnet.org/v2/identify/all';
 
-    // Prepare form data
+    // Prepare FormData for multiple images
     const formData = new FormData();
     formData.append('organs', organInput);
-    formData.append('images', imageInput.files[0]);
 
-    // Make the API call
+    for (let i = 0; i < imageInput.files.length; i++) {
+        formData.append('images', imageInput.files[i]);
+    }
+
     try {
         const response = await fetch(`${apiUrl}?api-key=${apiKey}`, {
             method: 'POST',
@@ -65,13 +48,16 @@ document.getElementById('plant-form').addEventListener('submit', async function 
         });
 
         if (!response.ok) {
-            throw new Error(`Error: ${response.status}`);
+            const errorText = await response.text();
+            console.error('Error response:', errorText);
+            throw new Error(`HTTP Status ${response.status}`);
         }
 
         const data = await response.json();
+        console.log('API Response:', data);
         displayResult(data);
     } catch (error) {
-        console.error(error);
+        console.error('Error occurred:', error);
         alert('Failed to identify the plant. Please try again.');
     }
 });
