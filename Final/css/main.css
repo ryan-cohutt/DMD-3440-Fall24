@@ -456,7 +456,7 @@ body {
         display: grid;
         row-gap: 10px;
         overflow-y: auto;
-        height: 570px;
+        max-height: 570px;
         .plant-item {
             background-color: #0f334225;
             height: 150px;
@@ -494,6 +494,50 @@ body {
     }
 }
 
+.popup-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .popup-content {
+    background: #fff;
+    padding: 20px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .popup-content img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+  }
+  
+  #close-popup {
+    margin-top: 20px;
+    background-color: #ddd;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  #delete-plant {
+    margin-top: 10px;
+    background-color: #ff6347;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+  }
+
 .add-popup {
     background-color: #0f334225;
     position: absolute;
@@ -508,6 +552,9 @@ body {
         height: 540px;
         align-self: center;
         justify-self: center;
+        #careInstructions {
+            font-size: 0.8em;
+        }
         button {
             svg {
                 width: 20px;
@@ -515,6 +562,10 @@ body {
 
         }
     }
+}
+
+#name-and-save {
+    display: none;
 }
 
 

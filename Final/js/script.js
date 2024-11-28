@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', function () {
+
 let nameForm = document.querySelector("#name-form")
 let enterPage = document.querySelector(".enter-page")
 let homePage = document.querySelector(".home-page")
@@ -16,69 +18,310 @@ let addPlant1 = document.querySelector("#add-new-plant1")
 let addPlant2 = document.querySelector("#add-new-plant2")
 let addPopup = document.querySelector(".add-popup")
 let closePopup = document.querySelector("#popup-close")
+let popupName = document.querySelector('#popup-name')
+let popupSpecies = document.querySelector('#popup-species')
+let popupImage = document.querySelector('#popup-image')
+let popupCare = document.querySelector('#popup-care')
+let popupSummary = document.querySelector('#popup-summary')
+let plantPopup = document.querySelector('#plant-popup')
+let closeSaved = document.querySelector('#close-popup')
+let deletePlant = document.querySelector("#delete-plant")
 
-const yourPlants = [];
+//
+// IDENTIFY SECTION
+//
 
-document.getElementById('plant-form').addEventListener('submit', async function (e) {
-    e.preventDefault();
-
-    const imageInput = document.getElementById('plant-image');
-    const organInput = document.getElementById('plant-organ').value;
-
-    if (imageInput.files.length === 0) {
-        alert('Please select at least one image!');
-        return;
-    }
-
-    const apiKey = '2b10zXu6SVxjHh1FBPXjbzavge'; // Replace with your API key
-    const apiUrl = 'https://my-api.plantnet.org/v2/identify/all';
-
-    // Prepare FormData for multiple images
-    const formData = new FormData();
-    formData.append('organs', organInput);
-
-    for (let i = 0; i < imageInput.files.length; i++) {
-        formData.append('images', imageInput.files[i]);
-    }
-
+async function identifyPlant(base64Image) {
+    const apiKey = "Nq40v3XjyfBITZVmd44xhOYuC6I8YYF8AvJGTsYXoP9h3lA48r";
+    const apiUrl = "https://plant.id/api/v3/identification";
+  
+    const data = {
+      images: [base64Image],
+      latitude: 49.207,
+      longitude: 16.608,
+      similar_images: true,
+    };
+  
     try {
-        const response = await fetch(`${apiUrl}?api-key=${apiKey}`, {
-            method: 'POST',
-            body: formData,
-        });
-
-        if (!response.ok) {
-            const errorText = await response.text();
-            console.error('Error response:', errorText);
-            throw new Error(`HTTP Status ${response.status}`);
-        }
-
-        const data = await response.json();
-        console.log('API Response:', data);
-        displayResult(data);
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Api-Key": apiKey,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+  
+      const result = await response.json();
+      console.log("Plant identification result:", result);
+  
+      return result;
     } catch (error) {
-        console.error('Error occurred:', error);
-        alert('Failed to identify the plant. Please try again.');
+      console.error("Error identifying plant:", error);
     }
+  }
+
+  function convertImageToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result.split(",")[1]);
+      reader.onerror = (error) => reject(error);
+      reader.readAsDataURL(file);
+    });
+  }
+
+  document.getElementById("identifyButton").onclick = async function () {
+    const fileInput = document.getElementById("fileInput");
+    const resultElement = document.getElementById("result");
+    const careSummaryElement = document.getElementById("careSummary");
+  
+    if (fileInput.files.length === 0) {
+      alert("Please upload an image first!");
+      return;
+    }
+  
+    const file = fileInput.files[0];
+  
+    try {
+      const base64Image = await convertImageToBase64(file);
+  
+      currentPlant.image = `data:image/jpeg;base64,${base64Image}`;
+  
+      const identificationResult = await identifyPlant(base64Image);
+  
+      if (identificationResult.result && identificationResult.result.classification.suggestions) {
+        const suggestions = identificationResult.result.classification.suggestions;
+  
+        const topSuggestion = suggestions[0];
+        resultElement.innerHTML = `
+          <h3>Top Identification Result:</h3>
+          <div>
+            <h4>${topSuggestion.name} (${(topSuggestion.probability * 100).toFixed(2)}% confidence)</h4>
+            ${
+              topSuggestion.similar_images.length > 0
+                ? `<img src="${topSuggestion.similar_images[0].url_small}" alt="${topSuggestion.name}" title="Top match">`
+                : "<p>No similar image available.</p>"
+            }
+          </div>
+        `;
+  
+        const accessToken = identificationResult.access_token;
+        console.log("Access Token:", accessToken);
+  
+        const { fullCareInstructions, careSummary } = await getCareInstructions(accessToken);
+  
+        careSummaryElement.innerHTML = `
+          <h3>Care Summary:</h3>
+          <p>${careSummary}</p>
+        `;
+  
+        currentPlant.fullCareInstructions = fullCareInstructions;
+        currentPlant.careSummary = careSummary;
+  
+        handlePlantIdentificationSuccess(
+          topSuggestion.name,
+          careSummary,
+          fullCareInstructions,
+          currentPlant.image
+        );
+      } else {
+        resultElement.textContent = "No plant detected or suggestions found.";
+      }
+    } catch (error) {
+      console.error("Error processing the file:", error);
+      resultElement.textContent = "Error identifying plant. Check the console for details.";
+    }
+  };
+  
+
+
+//
+// CARE INSTRUCTIONS SECTION
+//
+
+async function getCareInstructions(accessToken) {
+  const apiKey = 'Nq40v3XjyfBITZVmd44xhOYuC6I8YYF8AvJGTsYXoP9h3lA48r';
+  const url = `https://plant.id/api/v3/identification/${accessToken}/conversation`;
+
+  const fullCareData = {
+    question: "Tell me how to take care of the plant",
+    prompt: "Give answer in clear steps.",
+    temperature: 0.5,
+    app_name: "MyAppBot"
+  };
+
+  const summaryCareData = {
+    question: "Provide a short 2-sentence care summary for this plant.",
+    prompt: "Give answer in 2 sentences.",
+    temperature: 0.5,
+    app_name: "MyAppBot"
+  };
+
+  try {
+    const fullCareResponse = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Api-Key': apiKey
+      },
+      body: JSON.stringify(fullCareData)
+    });
+
+    const fullCareResult = await fullCareResponse.json();
+    console.log("Full Care Instructions API Response:", fullCareResult);
+
+    const summaryCareResponse = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Api-Key': apiKey
+      },
+      body: JSON.stringify(summaryCareData)
+    });
+
+    const summaryCareResult = await summaryCareResponse.json();
+    console.log("Care Summary API Response:", summaryCareResult);
+
+    const fullCareInstructions = fullCareResult.messages && fullCareResult.messages.length > 1
+      ? fullCareResult.messages[1].content
+      : "Sorry, I couldn't fetch the full care instructions.";
+
+    const careSummary = summaryCareResult.messages && summaryCareResult.messages.length > 1
+      ? summaryCareResult.messages[3].content
+      : "Sorry, I couldn't fetch a care summary.";
+
+    return { fullCareInstructions, careSummary };
+  } catch (error) {
+    console.error("Error fetching care instructions:", error);
+    return {
+      fullCareInstructions: "Sorry, there was an error fetching the full care instructions.",
+      careSummary: "Sorry, there was an error fetching the care summary."
+    };
+  }
+}
+
+
+//
+// SAVED PLANTS SECTION
+//
+
+
+
+let savedPlants = JSON.parse(localStorage.getItem('savedPlants')) || [];
+let currentPlant = {};
+
+function savePlant(plantName, species, careSummary, fullCareInstructions, imageURL) {
+  const newPlant = {
+    name: plantName,
+    species: species,
+    careSummary: careSummary,
+    fullCareInstructions: fullCareInstructions,
+    image: imageURL,
+  };
+
+  savedPlants.push(newPlant);
+  localStorage.setItem('savedPlants', JSON.stringify(savedPlants));
+  displaySavedPlants();
+}
+
+function displaySavedPlants() {
+  const plantsCont = document.querySelector('.plants-cont');
+  plantsCont.innerHTML = '';
+
+  savedPlants.forEach((plant, index) => {
+    const plantItem = document.createElement('div');
+    plantItem.classList.add('plant-item');
+    
+    plantItem.innerHTML = `
+      <h1 class="source-black">${plant.name}</h1>
+      <h2 class="inter-italic">${plant.species}</h2>
+      <img src="${plant.image}" alt="${plant.name}" />
+    `;
+    
+    plantItem.addEventListener('click', () => openPopup(plant, index));
+
+    plantsCont.appendChild(plantItem);
+  });
+  if (savedPlants.length === 0) {
+    plantsCont.innerHTML = "<p>No saved plants yet.</p>";
+  }
+}
+
+function openPopup(plant, index) {
+  popupName.textContent = plant.name;
+  popupSpecies.textContent = plant.species;
+  popupImage.src = plant.image;
+  popupSummary.textContent = plant.careSummary;
+  popupCare.textContent = plant.fullCareInstructions;
+
+  currentPlant = { ...plant, index };
+
+  plantPopup.style.display = 'flex';
+}
+
+closeSaved.addEventListener("click", closeSavedPopup)
+
+function closeSavedPopup() {
+  plantPopup.style.display = 'none';
+}
+
+deletePlant.addEventListener("click", deletePlantFromPopup)
+
+function deletePlantFromPopup() {
+  savedPlants.splice(currentPlant.index, 1);
+  localStorage.setItem('savedPlants', JSON.stringify(savedPlants));
+
+  closeSavedPopup();
+
+  displaySavedPlants();
+}
+
+document.getElementById('save-plant').addEventListener('click', () => {
+  const plantName = document.getElementById('plant-name').value.trim();
+  if (!plantName) {
+    alert('Please give your plant a name!');
+    return;
+  }
+
+  savePlant(
+    plantName,
+    currentPlant.species,
+    currentPlant.careSummary,
+    currentPlant.fullCareInstructions,
+    currentPlant.image
+  );
+
+  document.getElementById('plant-name').value = '';
+  alert('Plant saved successfully!');
 });
 
-// Function to display the result
-function displayResult(data) {
-    const resultDiv = document.getElementById('result');
-    const speciesName = document.getElementById('species-name');
-    const confidenceScore = document.getElementById('confidence-score');
-
-    if (data.results && data.results.length > 0) {
-        const bestMatch = data.results[0];
-        speciesName.textContent = `Species: ${bestMatch.species.scientificName}`;
-        confidenceScore.textContent = `Confidence: ${(bestMatch.score * 100).toFixed(2)}%`;
-        resultDiv.style.display = 'block';
-    } else {
-        speciesName.textContent = 'No match found.';
-        confidenceScore.textContent = '';
-        resultDiv.style.display = 'block';
-    }
+function showNameAndSaveSection() {
+  document.getElementById('name-and-save').style.display = 'block';
 }
+
+function handlePlantIdentificationSuccess(species, careSummary, fullCareInstructions, imageURL) {
+  currentPlant = {
+    species: species,
+    careSummary: careSummary,
+    fullCareInstructions: fullCareInstructions,
+    image: imageURL
+  };
+
+  showNameAndSaveSection();
+}
+
+displaySavedPlants();
+
+
+
+
+//
+// PAGE SWITCHING SECTION
+//
 
 closePopup.addEventListener("click", function() {
     addPopup.style.opacity = "0"
@@ -179,3 +422,4 @@ function hideAllPages() {
     }, 125)
 }
 
+});
