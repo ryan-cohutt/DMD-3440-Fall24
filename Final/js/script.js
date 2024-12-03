@@ -1,3 +1,7 @@
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register("sw.js");
+}
+
 document.addEventListener('DOMContentLoaded', function () {
 
 let nameForm = document.querySelector("#name-form")
@@ -26,6 +30,32 @@ let popupSummary = document.querySelector('#popup-summary')
 let plantPopup = document.querySelector('#plant-popup')
 let closeSaved = document.querySelector('#close-popup')
 let deletePlant = document.querySelector("#delete-plant")
+let offlineMSG = document.querySelector(".offline-msg")
+let fileInput = document.getElementById("fileInput");
+
+
+function handleOffline() {
+  console.log('Device is offline.');
+    fileInput.disabled = true;
+  offlineMSG.style.display = "block"
+}
+
+function handleOnline() {
+  console.log('Device is online.');
+  fileInput.disabled = false;
+  offlineMSG.style.display = "none"
+}
+
+if (!navigator.onLine) {
+  handleOffline();
+} else {
+  handleOnline();
+}
+
+window.addEventListener('offline', handleOffline);
+window.addEventListener('online', handleOnline);
+
+
 
 //
 // IDENTIFY SECTION
@@ -75,7 +105,6 @@ async function identifyPlant(base64Image) {
   }
 
   document.getElementById("identifyButton").onclick = async function () {
-    const fileInput = document.getElementById("fileInput");
     const resultElement = document.getElementById("result");
     const careSummaryElement = document.getElementById("careSummary");
   

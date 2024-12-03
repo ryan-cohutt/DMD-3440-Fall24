@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grow Mate Home</title>
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="./css/main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="images/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="./images/favicon.svg">
+    <link rel="manifest" href="./app.webmanifest">
 </head>
 <body>
     <header class="header-bar">
@@ -31,7 +32,7 @@
         </svg>
     </header>
     <section class="enter-page">
-        <img src="images/growmate.svg" alt="Grow Mate Logo">
+        <img src="./images/growmate.svg" alt="Grow Mate Logo">
         <h1 class="source-black"><span id="logo-grow">GROW</span><span id="logo-mate">MATE</span></h1>
         <p class="inter-reg">Welcome to your plant care assistant.</p>
         <h2 class="inter-bold">Enter your name</h2>
@@ -143,9 +144,9 @@
       </div>
       <div class="plants-cont">
         <div class="plant-item">
-          <h1 class="source-black">BARRY</h1>
+          <!-- <h1 class="source-black">BARRY</h1>
           <h2 class="inter-italic">Plant species</h2>
-          <img src="images/Plant1.webp" alt="">
+          <img src="images/Plant1.webp" alt=""> -->
         </div>
       </div>
       <div id="plant-popup" class="popup-modal">
@@ -191,6 +192,7 @@
         </label>
         <input type="file" id="fileInput" accept="image/*">
         <button id="identifyButton" class="source-black">IDENTIFY PLANT</button>
+        <p class="inter-reg offline-msg">You are Offline</p>
         <div id="result" class="inter-italic"></div>
         <div id="careSummary" class="inter-reg"></div>
         <div id="name-and-save">
