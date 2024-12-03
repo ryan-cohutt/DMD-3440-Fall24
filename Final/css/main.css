@@ -6,7 +6,7 @@ html {
 }
 
 body {
-    margin: 0px 40px;
+    margin: 0px 0px;
     padding: 0;
     height: 100%;
     width: auto;
@@ -103,6 +103,7 @@ body {
     display: grid;
     grid-template-rows: 2fr 3fr min-content min-content 0.5fr min-content min-content;
     transition: all .1s ease;
+    padding: 0 40px;
     img {
         grid-row: 2;
         width: 250px;
@@ -752,6 +753,8 @@ body {
     bottom: 0;
     gap: 28px;
     margin-bottom: 25px;
+    margin-left: calc((100% - 292px) / 2);
+    margin-right: calc((100% - 292px) / 2);
     box-sizing: border-box;
     button {
         background-color: transparent;
@@ -776,6 +779,8 @@ body {
     bottom: 0;
     gap: 28px;
     margin-bottom: 25px;
+    margin-left: calc((100% - 292px) / 2);
+    margin-right: calc((100% - 292px) / 2);
     width: 292px;
     div {
         position: relative;
@@ -792,4 +797,11 @@ body {
         border-radius: 13px;
         transition: all .15s ease;
     }
+}
+
+footer {
+    display: grid;
+    width: 100%;
+    box-sizing: border-box;
+    justify-items: center;
 }
