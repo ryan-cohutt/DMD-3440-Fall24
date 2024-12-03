@@ -98,16 +98,13 @@ async function identifyPlant(base64Image) {
   
         const topSuggestion = suggestions[0];
         resultElement.innerHTML = `
-          <h3>Top Identification Result:</h3>
-          <div>
-            <h4>${topSuggestion.name} (${(topSuggestion.probability * 100).toFixed(2)}% confidence)</h4>
-            ${
-              topSuggestion.similar_images.length > 0
-                ? `<img src="${topSuggestion.similar_images[0].url_small}" alt="${topSuggestion.name}" title="Top match">`
-                : "<p>No similar image available.</p>"
-            }
-          </div>
+            <h4 class="inter-italic">${topSuggestion.name}</h4>
         `;
+          //${
+          //   topSuggestion.similar_images.length > 0
+          //     ? `<img src="${topSuggestion.similar_images[0].url_small}" alt="${topSuggestion.name}" title="Top match">`
+          //     : "<p>No similar image available.</p>"
+          //}
   
         const accessToken = identificationResult.access_token;
         console.log("Access Token:", accessToken);
@@ -115,8 +112,8 @@ async function identifyPlant(base64Image) {
         const { fullCareInstructions, careSummary } = await getCareInstructions(accessToken);
   
         careSummaryElement.innerHTML = `
-          <h3>Care Summary:</h3>
-          <p>${careSummary}</p>
+          <h3 class="inter-bold">Care Summary:</h3>
+          <p class="inter-reg">${careSummary}</p>
         `;
   
         currentPlant.fullCareInstructions = fullCareInstructions;
@@ -260,7 +257,7 @@ function openPopup(plant, index) {
 
   currentPlant = { ...plant, index };
 
-  plantPopup.style.display = 'flex';
+  plantPopup.style.display = 'grid';
 }
 
 closeSaved.addEventListener("click", closeSavedPopup)
@@ -297,10 +294,12 @@ document.getElementById('save-plant').addEventListener('click', () => {
 
   document.getElementById('plant-name').value = '';
   alert('Plant saved successfully!');
+
+  addPopup.style.display = "none"
 });
 
 function showNameAndSaveSection() {
-  document.getElementById('name-and-save').style.display = 'block';
+  document.getElementById('name-and-save').style.display = 'grid';
 }
 
 function handlePlantIdentificationSuccess(species, careSummary, fullCareInstructions, imageURL) {
@@ -317,6 +316,27 @@ function handlePlantIdentificationSuccess(species, careSummary, fullCareInstruct
 displaySavedPlants();
 
 
+
+//
+// FILE INPUT BUTTON SWITCHER
+//
+
+let fileUploader = document.getElementById('fileInput');
+let uploadButton = document.getElementById('file-label');
+let uploadIcon = document.getElementById('upload-icon')
+
+fileUploader.addEventListener('change', () => {
+    if (fileUploader.files.length > 0) {
+        uploadButton.style.backgroundColor = '#067A53';
+        uploadButton.style.border = 'none';
+        uploadButton.style.color = '#FFFBF7';
+        uploadButton.style.fill = '#FFFBF7';
+        uploadIcon.innerHTML = '<path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>'
+        uploadIcon.setAttribute('viewBox','0 0 448 512')
+    } else {
+        uploadButton.style.backgroundColor = '';
+    }
+});
 
 
 //
