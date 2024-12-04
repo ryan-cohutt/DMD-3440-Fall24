@@ -804,6 +804,7 @@ footer {
     width: 100%;
     box-sizing: border-box;
     justify-items: center;
+    bottom: 0;
 }
 
 .offline-msg {
