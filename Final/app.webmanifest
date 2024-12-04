@@ -1,28 +1,28 @@
 {
-    "name": "Plant Care Assisstant",
-    "short_name": "GrowMate",
-    "start_url": "./index.html",
-    "display": "standalone",
-    "description": "An app to help you identify your plants and figure out the best care practices.",
-    "theme_color": "#067A53",
-    "screenshots": [
-        {
-            "src": "images/Screenshot1.png",
-            "type": "image/png",
-            "sizes": "692x1495"
-        },
-        {
-            "src": "images/Screenshot2.png",
-            "type": "image/png",
-            "sizes": "688x1500"
-        },
-        {
-            "src": "images/Screenshot3.png",
-            "type": "image/png",
-            "sizes": "692x1500"
-        }
-    ],
-    "icons": [
+  "name": "Grow Mate",
+  "short_name": "GrowMate",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "description": "An app to help you identify your plants and figure out the best care practices.",
+  "theme_color": "#067A53",
+  "screenshots": [
+    {
+      "src": "images/Screenshot1.png",
+      "type": "image/png",
+      "sizes": "692x1495"
+    },
+    {
+      "src": "images/Screenshot2.png",
+      "type": "image/png",
+      "sizes": "688x1500"
+    },
+    {
+      "src": "images/Screenshot3.png",
+      "type": "image/png",
+      "sizes": "692x1500"
+    }
+  ],
+  "icons": [
     {
       "src": "windows11/SmallTile.scale-100.png",
       "sizes": "71x71"
@@ -471,5 +471,9 @@
       "src": "ios/1024.png",
       "sizes": "1024x1024"
     }
-  ]
+  ],
+  "background_color": "#fffbf7",
+  "id": "growmate",
+  "lang": "en",
+  "orientation": "portrait"
 }
